@@ -1,0 +1,10 @@
+fastapi==0.115.5
+uvicorn[standard]==0.30.6
+psycopg[binary]==3.2.3
+python-dotenv==1.0.1
+pypdf==5.0.1
+openai==1.45.0
+requests==2.31.0
+cohere==5.9.4
+google-genai==0.3.0
+orjson==3.10.7

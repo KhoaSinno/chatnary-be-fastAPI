@@ -17,7 +17,10 @@ if settings.openai_api_key:
         print(f"Warning: Could not initialize OpenAI client: {e}")
         _openai = None
 
-
+# vectors = [
+#   [0.123456789, -0.000001234, 0.9999999],
+#   [0.5, 0.25, -0.125]
+# ]
 def embed_texts(texts: List[str]) -> List[List[float]]:
     if not settings.openai_api_key:
         raise RuntimeError("OPENAI_API_KEY not set")
@@ -71,6 +74,13 @@ def rerank(query: str, docs: List[Dict], top_n: int = 8) -> List[Dict]:
         documents=[{"text": d["text"]} for d in docs],
         top_n=min(top_n, len(docs))
     )
+# results is list of {index, relevance_score}
+#     [
+#   {
+#     "text": "Đoạn văn liên quan nhất đến câu hỏi...",
+#     "meta": {"document_id": 42, "chunk_index": 5, "title": "report", "source": "C:\\data\\report.pdf"},
+#     "score": 0.92
+#   }, ...]
     reranked = []
     for hit in results.results:
         item = docs[hit.index]

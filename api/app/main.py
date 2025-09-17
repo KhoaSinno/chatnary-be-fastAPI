@@ -9,7 +9,6 @@ from .db import get_conn
 
 app = FastAPI(title="RAG Skeleton")
 
-
 class AskRequest(BaseModel):
     query: str
     k_vector: int = 40
@@ -17,12 +16,11 @@ class AskRequest(BaseModel):
     rerank_top_n: int = 8
     answer_language: str = "vi"
 
-
 class AskResponse(BaseModel):
     answer: str
     sources: List[Dict]
 
-
+# Check health
 @app.get("/health")
 def health():
     # quick DB ping
@@ -33,11 +31,12 @@ def health():
         return {"ok": False, "error": str(e)}
     return {"ok": True}
 
-
+# Ask a question
 @app.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest):
     candidates = hybrid_search(
         req.query, k_vec=req.k_vector, k_kw=req.k_keyword)
+
     # add friendly metadata (title)
     if candidates:
         ids = list({c["document_id"] for c in candidates})
@@ -46,13 +45,26 @@ def ask(req: AskRequest):
                 "SELECT id, title, source FROM documents WHERE id = ANY(%s)",
                 (ids,)
             ).fetchall()
+#             rows = [
+#               (2, "report", r"C:\data\report.pdf"),
+#               (5, "notes", r"C:\data\notes.md"),
+#                 ...]
         meta = {r[0]: {"title": r[1], "source": r[2]} for r in rows}
+# meta = {
+#   2: {"title": "report", "source": "C:\\data\\report.pdf"},
+#   5: {"title": "notes",  "source": "C:\\data\\notes.md"}
+# }
         for c in candidates:
             c.setdefault("meta", {}).update(meta.get(c["document_id"], {}))
+
     # Prepare docs for rerank
     docs = [{"text": c["text"], "meta": c.get("meta", {})} for c in candidates]
+    # Call rerank
     top = rerank(req.query, docs, top_n=req.rerank_top_n)
+    
+    # Call LLM to generate answer
     answer = generate_answer(req.query, top, language=req.answer_language)
+
     # expose minimal source info
     sources = [
         {

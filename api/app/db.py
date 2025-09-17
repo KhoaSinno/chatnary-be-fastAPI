@@ -1,3 +1,10 @@
+# ingest.py: insert chunks & embeddings in Postgres.
+
+# retrieval.py: query vector similarity (pgvector).
+
+# llm.py: fetch chunk text to build context for responses.
+
+
 from contextlib import contextmanager
 import psycopg
 from .settings import settings

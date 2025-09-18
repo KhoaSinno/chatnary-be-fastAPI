@@ -44,11 +44,12 @@ def _keyword_candidates(query: str, limit: int = 20) -> List[Dict]:
             sql_trgm = """
             SELECT id, document_id, chunk_index, content, similarity(content, %s) AS score
             FROM chunks
-            WHERE content ILIKE ('%' || %s || '%')
+            WHERE content ILIKE %s
             ORDER BY score DESC
             LIMIT %s
             """
-            rows = conn.execute(sql_trgm, (query, query, limit)).fetchall()
+            rows = conn.execute(
+                sql_trgm, (query, f'%{query}%', limit)).fetchall()
     return [
         {
             "id": r[0],

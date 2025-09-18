@@ -28,7 +28,7 @@ Drop your PDFs/TXT/MD into `./data/`
 ## 4. Ingest
 
 ```bash
-docker compose exec api python -m app.ingest /data
+docker compose exec api python -m app.ingest //data
 ```
 
 ## 5. Ask

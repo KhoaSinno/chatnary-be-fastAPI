@@ -1,0 +1,211 @@
+==================== Vietnamese query ====================
+{
+  "query": "Mã hóa khóa bất đối xứng là gì, có những thuật toán nào thuộc loại này"
+}
+
+//// Response ////
+
+{
+  "answer": "Mã hóa khóa bất đối xứng, còn gọi là mã hóa khóa công khai (PKC), sử dụng một cặp khóa cho quá trình mã hóa và giải mã. Một trong hai khóa có thể dùng để mã hóa và khóa còn lại dùng để giải mã. Hệ mã hóa Elgamal là một ví dụ.\nNguồn: [8:0], [8:12]\n",
+  "sources": [
+    {
+      "document_id": 8,
+      "chunk_index": 0,
+      "title": "Chuong 3 - He ma bat doi xung",
+      "source": "/data/Chuong 3 - He ma bat doi xung.pdf",
+      "preview": "CHƯƠNG 3\nCÁC HỆ MÃ HÓA CÔNG KHAI\n(MÃ HÓA BẤT ĐỐI XỨNG)\n1\n\nGiới thiệu\n❖Nguồn gốc:\n➢Hệ mật mã khóa đối xứng (cổ điển và hiện đại) không đáp \nứng được 2 mục tiêu an toàn\n▪Xác thực\n▪Chống phủ nhận\n❖Quản lý khóa đối xứng là một vấn đề nan giải\n➢"
+    },
+    {
+      "document_id": 6,
+      "chunk_index": 14,
+      "title": "Chuong 1 - Tong quan",
+      "source": "/data/Chuong 1 - Tong quan.pdf",
+      "preview": "❖Các hàm băm MD 5 và SHA1.\n❖MD5 và SHA1 đã bị hack, các nhà mật mã học đã \nkhuyến cáo sử dụng các hàm băm mạnh hơn \n(SHA-256, SHA-512) trong các ứng dụng\n55\n\nVai trò của mật mã trong việc bảo mật thông tin\n❖Mật mã hay mã hóa dữ liệu (crypt"
+    },
+    {
+      "document_id": 7,
+      "chunk_index": 0,
+      "title": "Chuong 2 - He ma doi xung",
+      "source": "/data/Chuong 2 - He ma doi xung.pdf",
+      "preview": "CHƯƠNG 2\nCÁC HỆ MÃ ĐỐI XỨNG\n1\n\nMột số khái niệm\n❖Bản rõ  – PlainText (X)được gọi là vănbản gốc. \nBản rõ có thể được chia nhỏ có kích thước phù \nhợp.\n❖Bản mã – CipherText (Y)là bản tin gốc đã được \nmã hoá. \n❖Mã là thuật toán (E)chuyển bản rõ"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 9,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "sai lệch hoặc không chính xác. Các ràng bu ộc về tính toàn v ẹn sẽ được thảo luận chi ti ết \ntrong m ục 3.1.8 và 3.1.9.  \n2.2.6 Mã hóa  \nMã hóa   Việc biến đổi dữ liệu bằng một thuật toán đặc biệt khiến dữ liệu không \nthể đọc được bởi bất k"
+    },
+    {
+      "document_id": 8,
+      "chunk_index": 12,
+      "title": "Chuong 3 - He ma bat doi xung",
+      "source": "/data/Chuong 3 - He ma bat doi xung.pdf",
+      "preview": "Hệ mã hóa Elgamal\n❖Thuật toán sinh khóa (bên nhận và bên gửi)\n➢Chọn một số nguyên tố lớn p (thường có độ dài từ 1024 \nđến 2048 bit) và hai số nguyên ngẫu nhiên 𝜀và 𝑎, cả hai \nđều nhỏ hơn p\n𝑦=𝜀𝑎(𝑚𝑜𝑑 𝑝)\n➢Khóa công khai được lấy là (𝑝,𝜀,𝑦)\n➢Kh"
+    },
+    {
+      "document_id": 9,
+      "chunk_index": 10,
+      "title": "Chuong 4 - Ham bam + Chu ky so",
+      "source": "/data/Chuong 4 - Ham bam + Chu ky so.pdf",
+      "preview": "❖Gửi: gửi đính kèm theo thông điệp một bản băm của \nnó\n❖Nhận: băm thông điệp và so sánh với bản băm đi \nkèm\n44\n\nToàn vẹn dữ liệu (Integrity)\n45\n\nToàn vẹn dữ liệu (Integrity)\n❖Gửi đính kèm theo thông điệp một bản băm của nó\n❖Mật mã hóa cả th"
+    },
+    {
+      "document_id": 7,
+      "chunk_index": 10,
+      "title": "Chuong 2 - He ma doi xung",
+      "source": "/data/Chuong 2 - He ma doi xung.pdf",
+      "preview": "Mã hoán vị (Permutation Cipher) \n❖Mã hóa các đoạn văn bản bằng mã hóa hoán vị\n➢KHI KHONG GIOI THI PHAI CO GANG\n➢THANH CONG DIEU DUA TREN NO LUC BAN THAN\n➢TAT CA MOI THU DIEU PHAI DO TU MINH NAM LAY\n47\n\nMã hóa khối (Mã hóa hiện đại)\n48\n\nQu"
+    },
+    {
+      "document_id": 9,
+      "chunk_index": 11,
+      "title": "Chuong 4 - Ham bam + Chu ky so",
+      "source": "/data/Chuong 4 - Ham bam + Chu ky so.pdf",
+      "preview": "thực để xác minh tính toàn vẹn của thông điệp\n49\n\nMã chứng thực thông điệp\n❖kết hợp hàm băm mật mã với một khóa bí mật\n❖sử dụng mã hóa đối xứng để tạo ra output có chiều \ndài cố định cho một input chiều dài thay đổi\n50\n\nMã chứng thực thông "
+    }
+  ]
+}
+
+====================
+
+==================== English query =================
+
+{
+  "query": "How does client-server system work?"
+}
+
+//// Response ////
+
+{
+  "answer": "Client nhận yêu cầu người dùng, kiểm tra cú pháp, tạo yêu cầu cơ sở dữ liệu và truyền đến server. Server chấp nhận và xử lý yêu cầu, kiểm tra ủy quyền, đảm bảo tính toàn vẹn, duy trì danh mục hệ thống, thực hiện xử lý truy vấn/cập nhật, và truyền phản hồi đến client. Client chuyển phản hồi lại cho người dùng. [10:38, 10:40]\n\nNguồn: [10:38, 10:40]",
+  "sources": [
+    {
+      "document_id": 10,
+      "chunk_index": 38,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "dữ liệu khác phù h ợp với logic ứng dụng. Sau đó, nó truy ền thông đi ệp đến serve r, chờ \nphản hồi và đ ịnh dạng ph ản hồi cho ngư ời dùng. Serve r chấp nhận và x ử lý các yêu c ầu \ncơ sở dữ liệu, sau đó truy ền kết quả trở lại client . Qu"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 41,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "• Một client  “béo” yêu c ầu tài nguyên đáng k ể trên máy tính c ủa khách h àng đ ể \nchạy hiệu quả. Điều này bao g ồm không gian đĩa, RAM và sức mạnh CPU.  \n• Chi phí qu ản trị phía client khá  đáng k ể. \nĐến năm 1995, m ột biến thể mới của"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 36,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "tương tác đ ể tạo thành  một hệ thống. Như tên cho th ấy, có m ột client , yêu c ầu một số \ntài nguyên và m ột server, cung c ấp tài nguyên. Không có yêu c ầu rằng client  và server \nphải nằm trên cùng m ột máy. Trong th ực tế, khá ph ổ biế"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 40,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "32  Bảng 1.3 Tóm t ắt các ch ức năng c ủa client -server  \nCLIENT  SERVER  \nQuản lý giao di ện ngư ời dùng  Chấp nhận và xử lý các y êu cầu cơ s ở dữ liệu từ client  \nChấp nh ận và ki ểm tra cú pháp nhập liệu \ncủa ngư ời dùng  Kiểm tra ủy q"
+    },
+    {
+      "document_id": 5,
+      "chunk_index": 21,
+      "title": "2022_Book_Internet of things from hype to reality_3rd",
+      "source": "/data/2022_Book_Internet of things from hype to reality_3rd.pdf",
+      "preview": "The formal REST constraints are as follows:\nClient-Server Communication Model\nThis allows for separation of concerns where the server focuses on functions such \nas data storage, whereas clients focus on the user interface and user state. \nU"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 37,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "dịch vụ dữ liệu cho client , như đư ợc minh h ọa trong Hình 1.15. Các d ịch vụ hiển thị xử \nlý các hành đ ộng giao di ện ngư ời dùng và logic ứng dụng dữ liệu và ngh iệp vụ chính. \nDịch vụ dữ liệu cung c ấp logic ứng dụng nghiệp vụ hạn chế,"
+    },
+    {
+      "document_id": 5,
+      "chunk_index": 22,
+      "title": "2022_Book_Internet of things from hype to reality_3rd",
+      "source": "/data/2022_Book_Internet of things from hype to reality_3rd.pdf",
+      "preview": "To allow for better scalability, the system comprised of a layered architecture that \nincludes clients, servers, and potentially multiple intermediate nodes interspersed \nbetween them. Clients may be in communication with intermediate nodes"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 39,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "• Chi ph í phần cứng có th ể giảm: server  chỉ yêu c ầu khả năng lưu tr ữ và xử lý đủ \nđể lưu tr ữ và qu ản lý cơ s ở dữ liệu. \n• Giảm chi phí truy ền thông: Các ứng dụng th ực hiện một phần hoạt động trên \nclient  và ch ỉ gửi yêu cầu truy "
+    }
+  ]
+}
+
+====================
+
+==================== Semi en and vi query =================
+{
+  "query": "What is transaction in sql và nó hoạt động ra sao?"
+}
+
+//// Response ////
+
+{
+  "answer": "Trong SQL, giao dịch là một hành động hoặc một loạt các hành động được thực hiện bởi người dùng hoặc chương trình ứng dụng để đọc hoặc cập nhật nội dung của cơ sở dữ liệu. Nó được xem như một đơn vị công việc logic trên cơ sở dữ liệu và có thể là toàn bộ một chương trình, một phần của chương trình hoặc một câu lệnh đơn lẻ (ví dụ: câu lệnh SQL INSERT hoặc UPDATE).\n\nMột giao dịch phải đảm bảo rằng tất cả các cập nhật tương ứng với nó được thực hiện hoặc không có cập nhật nào được thực hiện. Khi một giao dịch bị hủy hoặc khôi phục, SQL Server sẽ hoàn tác một phần hoạt động đã diễn ra kể từ khi bắt đầu giao dịch.\n\n[Nguồn: 10:46, 10:3, 10:18]",
+  "sources": [
+    {
+      "document_id": 10,
+      "chunk_index": 3,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "mục hệ thống cũng có th ể xác đ ịnh ngư ời dùng ho ặc những ngư ời dùng nào s ở \nhữu hoặc truy c ập dữ liệu. \n• Có th ể xác đ ịnh dễ dàng hơ n tính dư th ừa và không nh ất quán khi d ữ liệu được \ntập trung. \n• Các thay đ ổi đối với cơ s ở d"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 18,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "chiếu, kiểm tra quy ền) và t ối ưu hóa dư ới dạng một đơn v ị. \nĐừng nh ầm lẫn giữa giao d ịch và lô. M ột giao d ịch là m ột đơn v ị nguyên t ử của công \nviệc. M ột lô có th ể có nhi ều giao d ịch và m ột giao d ịch có th ể được gửi thành "
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 17,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "tránh b ất kỳ sự xen vào nhau c ủa chúng và do đó ngăn ch ặn các v ấn đề được mô t ả trong \nphần trư ớc. Giải pháp đơn gi ản nhất là ch ỉ cho phép thực hiện một giao d ịch tại một thời \nđiểm: m ột giao d ịch đư ợc cam k ết (committed) trư ớ"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 46,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "mềm, hoặc phương ti ện, ch ẳng hạn như s ự cố trầy xước đĩa c ứng ho ặc lỗi phần mềm \nứng dụng, ch ẳng hạn như l ỗi logic tr ong chương trình đang truy c ập cơ s ở dữ liệu. Nó \ncũng có th ể là kết quả của việc vô tình ho ặc cố ý làm h ỏng h"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 59,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "quá trình rollback x ảy ra thư ờng xuyên, thì đó là m ột dấu hiệu cho th ấy rằng phương \npháp l ạc quan là m ột lựa chọn tồi để điều khiển đồng th ời trong môi trư ờng cụ thể đó. \n \n  \n\nGiáo trình H ệ quản trị Cơ sở dữ liệu \n150  TÓM T ẮT \n"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 50,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "bắt đầu. M ột giao d ịch như v ậy được gọi là không hoàn thành (undone) ho ặc hoàn tác \n(rolled back). Không th ể hủy bỏ một giao d ịch đã cam k ết. Nếu chúng t a cho rằng giao \ndịch đã cam k ết là m ột sai l ầm, chúng t a phải thực hiện mộ"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 3,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "thể thực hiện các thay đ ổi lược đồ thông  qua chúng.  \nNói m ột cách đơn gi ản nhất, một thủ tục lưu tr ữ là một tập hợp các câu l ệnh và l ệnh T -\nSQL đã b iên d ịch mà SQL Server có th ể truy c ập trực tiếp. Mã đư ợc đặt trong m ột thủ \n"
+    },
+    {
+      "document_id": 10,
+      "chunk_index": 28,
+      "title": "kb_dbms",
+      "source": "/data/kb_dbms.pdf",
+      "preview": "phải có tính kh ả chuyển; nghĩa là, ph ải tuân theo m ột số tiêu chu ẩn đã đư ợc công nh ận \nđể người dùng  có th ể sử dụng cùng m ột cấu trúc l ệnh và cú pháp khi chuy ển từ DBMS \nnày sang DBMS khác. SQL đã đư ợc đề xuất nhằm đáp ứng các y"
+    }
+  ]
+}

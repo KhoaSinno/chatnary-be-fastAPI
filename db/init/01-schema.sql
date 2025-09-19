@@ -22,7 +22,7 @@ embedding vector(1536)
 -- Vector HNSW (cosine distance)
 CREATE INDEX IF NOT EXISTS idx_chunks_embedding_hnsw
 ON chunks USING hnsw (embedding vector_cosine_ops);
-
+-- vector_cosine_ops: When create index, let use cosine distance to compare vectors
 
 -- Full-text (basic); works reasonably with 'simple' for vi-en mixed text
 CREATE INDEX IF NOT EXISTS idx_chunks_tsv_gin
@@ -32,3 +32,5 @@ ON chunks USING GIN (content_tsv);
 -- Optional trigram fuzzy match for Vietnamese
 CREATE INDEX IF NOT EXISTS idx_chunks_trgm
 ON chunks USING GIN (content gin_trgm_ops);
+
+-- gin_trgm_ops: Let use trigram to compare text, support fuzzy match

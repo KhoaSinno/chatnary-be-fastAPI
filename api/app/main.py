@@ -11,8 +11,8 @@ app = FastAPI(title="RAG Skeleton")
 
 class AskRequest(BaseModel):
     query: str
-    k_vector: int = 40
-    k_keyword: int = 20
+    k_vector: int = 60
+    k_keyword: int = 30
     rerank_top_n: int = 8
     answer_language: str = "vi"
 

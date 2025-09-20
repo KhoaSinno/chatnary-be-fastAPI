@@ -63,7 +63,7 @@ def _keyword_candidates(query: str, limit: int = 20) -> List[Dict]:
     ]
 
 
-def hybrid_search(query: str, k_vec: int = 30, k_kw: int = 30) -> List[Dict]:
+def hybrid_search(query: str, k_vec: int = 60, k_kw: int = 30) -> List[Dict]:
     # 1) vector
     q_vec = embed_texts([query])[0]
     vec_hits = _vector_candidates(q_vec, limit=k_vec)

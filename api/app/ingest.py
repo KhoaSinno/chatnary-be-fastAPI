@@ -2,7 +2,7 @@ import argparse
 import os
 import pathlib
 from typing import List, Tuple
-from pypdf import PdfReader
+from .pdf_processor import extract_text_from_pdf
 from .chunker import chunk_text
 from .llm import embed_texts
 from .db import get_conn
@@ -16,9 +16,8 @@ TEXT_EXT = {".txt", ".md"}
 
 def _read_file(path: pathlib.Path) -> str:
     if path.suffix.lower() == ".pdf":
-        reader = PdfReader(str(path))
-        pages = [p.extract_text() or "" for p in reader.pages]
-        return "\n\n".join(pages)
+        # Use robust PDF processor with OCR fallback
+        return extract_text_from_pdf(path)
     elif path.suffix.lower() in TEXT_EXT:
         return path.read_text(encoding="utf-8", errors="ignore")
     else:

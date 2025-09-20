@@ -2,6 +2,8 @@ from typing import List
 
 # chunks = [ "Chapter 1: Introduction\n\nThis chapter explains the design goals... (continues up to ~1000 chars)", "...(overlap 200 chars continues) Chapter 2: Architecture\n\nComponents include db, llm, chunker... (next ~1000 chars)",...
 # ]
+
+
 def chunk_text(text: str, max_chars: int = 1000, overlap: int = 200) -> List[str]:
     text = (text or "").strip()
     if not text:

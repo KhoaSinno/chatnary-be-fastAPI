@@ -6,8 +6,10 @@ from .settings import settings
 from .retrieval import hybrid_search
 from .llm import rerank, generate_answer
 from .db import get_conn
+from .pdf_processor import pdf_processor
 
 app = FastAPI(title="RAG Skeleton")
+
 
 class AskRequest(BaseModel):
     query: str
@@ -16,11 +18,14 @@ class AskRequest(BaseModel):
     rerank_top_n: int = 8
     answer_language: str = "vi"
 
+
 class AskResponse(BaseModel):
     answer: str
     sources: List[Dict]
 
 # Check health
+
+
 @app.get("/health")
 def health():
     # quick DB ping
@@ -32,6 +37,8 @@ def health():
     return {"ok": True}
 
 # Ask a question
+
+
 @app.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest):
     candidates = hybrid_search(
@@ -61,7 +68,7 @@ def ask(req: AskRequest):
     docs = [{"text": c["text"], "meta": c.get("meta", {})} for c in candidates]
     # Call rerank
     top = rerank(req.query, docs, top_n=req.rerank_top_n)
-    
+
     # Call LLM to generate answer
     answer = generate_answer(req.query, top, language=req.answer_language)
 
@@ -77,3 +84,13 @@ def ask(req: AskRequest):
         for d in top
     ]
     return AskResponse(answer=answer, sources=sources)
+
+
+@app.get("/capabilities")
+def get_capabilities():
+    """Check PDF processing capabilities"""
+    return {
+        "pdf_processing": pdf_processor.get_capabilities(),
+        "database": "connected",
+        "version": "2.0.0-ocr"
+    }

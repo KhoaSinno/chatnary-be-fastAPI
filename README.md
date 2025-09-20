@@ -1,4 +1,4 @@
-# RAG Skeleton
+# RAG Skeleton: Chatnary system instruction
 
 ## Prerequisites
 
@@ -31,12 +31,24 @@ Drop your PDFs/TXT/MD into `./data/`
 docker compose exec api python -m app.ingest //data
 ```
 
+### 4.1 Test before ingest
+
+```bash
+docker compose exec api python test_pdf.py "your_file.pdf"
+```
+
+### 4.2 Monitor system
+
+```bash
+./scripts/check_pdf_processing.sh
+```
+
 ## 5. Ask
 
 ```bash
 curl -X POST http://localhost:8000/ask \
   -H 'Content-Type: application/json' \
-  -d '{"query": "Tài liệu này nói gì về bảo mật dữ liệu?", "rerank_top_n": 8}'
+  -d '{"query": "Tài liệu này nói gì về bảo mật dữ liệu?"}'
 ```
 
 ---

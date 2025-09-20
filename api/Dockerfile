@@ -1,11 +1,14 @@
 FROM python:3.11-slim
 
-
-# System deps
+# System deps including OCR tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-build-essential \
-curl \
-&& rm -rf /var/lib/apt/lists/*
+    build-essential \
+    curl \
+    tesseract-ocr \
+    tesseract-ocr-vie \
+    tesseract-ocr-eng \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR /app

@@ -12,6 +12,8 @@ TEXT_EXT = {".txt", ".md"}
 # input: Path("doc.pdf")  -> output: "Trang 1 text\n\nTrang 2 text\n\n..."
 # input: Path("notes.md") -> output: "nội dung file markdown..."
 # input: Path("image.png") -> output: ""
+
+
 def _read_file(path: pathlib.Path) -> str:
     if path.suffix.lower() == ".pdf":
         # Use robust PDF processor with OCR fallback
@@ -22,15 +24,20 @@ def _read_file(path: pathlib.Path) -> str:
         return ""
 
 # argument(source, title): ("C:\\data\\newfile.pdf", "newfile")
-def _upsert_document(conn, source: str, title: str) -> int:
+
+
+def _upsert_document(conn, source: str, title: str, owner_id: int | None = None) -> int:
     # return document ID
     row = conn.execute("SELECT id FROM documents WHERE source = %s",
                        (source,)).fetchone()
     if row:
+        if owner_id is not None:
+            conn.execute(
+                "UPDATE documents SET owner_id = %s WHERE id = %s", (owner_id, row[0]))
         return row[0]
     row = conn.execute(
-        "INSERT INTO documents (source, title) VALUES (%s, %s) RETURNING id",
-        (source, title)
+        "INSERT INTO documents (source, title, owner_id) VALUES (%s, %s, %s) RETURNING id",
+        (source, title, owner_id)
     ).fetchone()
     return row[0]
 
@@ -57,7 +64,7 @@ def _insert_chunks(conn, doc_id: int, chunks: List[str], vectors: List[List[floa
         )
 
 
-def ingest_dir(root: str, chunk_size: int, overlap: int):
+def ingest_dir(root: str, chunk_size: int, overlap: int, owner_id: int | None):
     root_path = pathlib.Path(root)
     # Loop all project structure file
     paths = [p for p in root_path.rglob(
@@ -70,7 +77,7 @@ def ingest_dir(root: str, chunk_size: int, overlap: int):
                 if not text.strip():
                     print(f"Skip empty: {path}")
                     continue
-                doc_id = _upsert_document(conn, str(path), path.stem)
+                doc_id = _upsert_document(conn, str(path), path.stem, owner_id)
 # chunks = [ "Chapter 1: Introduction\n\nThis chapter explains the design goals... (continues up to ~1000 chars)", "...(overlap 200 chars continues) Chapter 2: Architecture\n\nComponents include db, llm, chunker... (next ~1000 chars)",...
 # ]
                 chunks = chunk_text(
@@ -93,9 +100,11 @@ if __name__ == "__main__":
                         default=int(os.getenv("CHUNK_SIZE", "1000")))
     parser.add_argument("--overlap", type=int,
                         default=int(os.getenv("CHUNK_OVERLAP", "200")))
+    # Add default owner_id argument
+    parser.add_argument("--owner", type=int, default=1)
     args = parser.parse_args()
 
     import os
     chunk = args.chunk
     overlap = args.overlap
-    ingest_dir(args.root, chunk, overlap)
+    ingest_dir(args.root, chunk, overlap, args.owner)

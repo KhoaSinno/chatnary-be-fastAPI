@@ -1,14 +1,24 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, Header, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict
 import orjson
 from .settings import settings
-from .retrieval import hybrid_search
+from .retrieval import _keyword_candidates_for_user, hybrid_search, hybrid_search_for_user
 from .llm import rerank, generate_answer
 from .db import get_conn
 from .pdf_processor import pdf_processor
 
 app = FastAPI(title="RAG Skeleton")
+
+# Configure CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class AskRequest(BaseModel):
@@ -26,6 +36,10 @@ class AskResponse(BaseModel):
 # Check health
 
 
+def get_current_user_id(x_user_id: int | None = Header(default=None, alias="X-User-Id")) -> int:
+    return x_user_id or 1
+
+
 @app.get("/health")
 def health():
     # quick DB ping
@@ -40,9 +54,9 @@ def health():
 
 
 @app.post("/ask", response_model=AskResponse)
-def ask(req: AskRequest):
-    candidates = hybrid_search(
-        req.query, k_vec=req.k_vector, k_kw=req.k_keyword)
+def ask(req: AskRequest, user_id: int = Depends(get_current_user_id)):
+    candidates = hybrid_search_for_user(
+        req.query, user_id, k_vec=req.k_vector, k_kw=req.k_keyword)
 
     # add friendly metadata (title)
     if candidates:
@@ -84,6 +98,61 @@ def ask(req: AskRequest):
         for d in top
     ]
     return AskResponse(answer=answer, sources=sources)
+
+
+@app.get("/documents/suggest")
+def suggest(q: str = Query(min_length=1), user_id: int = Depends(get_current_user_id)):
+    sql = """
+      SELECT d.id, d.title
+      FROM documents d
+      WHERE d.owner_id = %s
+        AND d.title ILIKE %s
+      ORDER BY similarity(d.title, %s) DESC, d.title ASC
+      LIMIT 8
+    """
+    with get_conn() as conn:
+        rows = conn.execute(sql, (user_id, f'%{q}%', q)).fetchall()
+    return [{"id": r[0], "title": r[1]} for r in rows]
+
+
+@app.get("/documents/search")
+def search_docs(q: str = Query(min_length=1), user_id: int = Depends(get_current_user_id)):
+    # Dùng keyword_candidates_for_user để có preview từ chunk
+    hits = _keyword_candidates_for_user(q, user_id, limit=20)
+    # gộp theo document, lấy preview đầu
+    out = {}
+    for h in hits:
+        did = h["document_id"]
+        if did not in out:
+            out[did] = {"document_id": did, "preview": h["text"]
+                        [:280], "chunks": [h["meta"]["chunk_index"]]}
+        else:
+            if len(out[did]["chunks"]) < 3:
+                out[did]["chunks"].append(h["meta"]["chunk_index"])
+    # thêm title/source
+    with get_conn() as conn:
+        meta = conn.execute(
+            "SELECT id, title, source FROM documents WHERE id = ANY(%s)", (list(out.keys()),)).fetchall()
+    for (did, title, source) in meta:
+        out[did].update({"title": title, "source": source})
+    return list(out.values())
+
+
+@app.get("/documents/{doc_id}/preview")
+def preview_doc(doc_id: int, user_id: int = Depends(get_current_user_id)):
+    # trả text preview nhanh từ vài chunk đầu tiên
+    sql = """
+      SELECT c.content
+      FROM chunks c
+      JOIN documents d ON d.id = c.document_id
+      WHERE c.document_id = %s AND d.owner_id = %s
+      ORDER BY c.chunk_index ASC
+      LIMIT 3
+    """
+    with get_conn() as conn:
+        rows = conn.execute(sql, (doc_id, user_id)).fetchall()
+    text = "\n\n".join(r[0] for r in rows) if rows else ""
+    return {"document_id": doc_id, "preview": text[:2000]}
 
 
 @app.get("/capabilities")

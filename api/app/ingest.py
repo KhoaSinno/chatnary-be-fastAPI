@@ -12,8 +12,6 @@ TEXT_EXT = {".txt", ".md"}
 # input: Path("doc.pdf")  -> output: "Trang 1 text\n\nTrang 2 text\n\n..."
 # input: Path("notes.md") -> output: "nội dung file markdown..."
 # input: Path("image.png") -> output: ""
-
-
 def _read_file(path: pathlib.Path) -> str:
     if path.suffix.lower() == ".pdf":
         # Use robust PDF processor with OCR fallback
@@ -24,8 +22,6 @@ def _read_file(path: pathlib.Path) -> str:
         return ""
 
 # argument(source, title): ("C:\\data\\newfile.pdf", "newfile")
-
-
 def _upsert_document(conn, source: str, title: str) -> int:
     # return document ID
     row = conn.execute("SELECT id FROM documents WHERE source = %s",

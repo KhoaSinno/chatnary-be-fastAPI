@@ -71,6 +71,7 @@ npm i -D @types/node
 ```
 
 **Giải thích parameters:**
+
 * `-i`: Input URL (fetch từ backend API)
 * `-o`: Output directory
 * `-c fetch`: Sử dụng fetch API
@@ -550,6 +551,7 @@ curl http://localhost:8000/health
 ```
 
 **❌ "CORS errors in browser"**
+
 * Ensure CORS is configured in FastAPI backend
 * Check console for specific CORS error details
 
@@ -564,6 +566,7 @@ ls -la lib/api-client/
 ```
 
 **❌ "Type errors with responses"**
+
 * Backend OpenAPI spec may need better response schemas
 * Use `unknown` type and manual casting as temporary solution
 

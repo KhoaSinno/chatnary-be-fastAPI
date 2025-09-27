@@ -1,0 +1,40 @@
+{
+    "answer": "Quản trị viên cơ sở dữ liệu (DBA) chịu trách nhiệm xây dựng cơ sở dữ liệu vật lý, bao gồm thiết kế và triển khai cơ sở dữ liệu vật lý, kiểm soát bảo mật và tính toàn vẹn, duy trì hệ thống hoạt động và đảm bảo hiệu suất thỏa đáng [doc_id:6:46]. \"Vai trò của DBA được định hướng về mặt kỹ thuật nhiều hơn so với DA, đòi hỏi kiến thức chi tiết về DBMS được sử dụng và môi trường hệ thống\" [doc_id:6:46].\n",
+    "sources": [
+        {
+            "document_id": 6,
+            "chunk_index": 46,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "cao, đ ảm bảo rằng hư ớng phát tri ển cơ s ở dữ liệu cuối cùng s ẽ hỗ trợ các m ục tiêu c ủa \ntổ chức. \nQuản trị viên cơ s ở dữ liệu (Database Admini strator - DBA) ch ịu trác h nhi ệm xây d ựng \ncơ sở dữ liệu vật lý, bao g ồm thiết kế và t"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 45,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "1.1.5 Vai trò con ngư ời trong môi trư ờng DBMS  \nTrong ph ần này, chúng ta tìm hi ểu  thành ph ần thứ năm c ủa môi trư ờng DBMS: con \nngười. Có b ốn vai trò con ngư ời khác nhau trong  môi trư ờng DBMS: qu ản trị viên d ữ \nliệu và quản trị"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 63,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "nhìn, th ủ tục, trình kích ho ạt hoặc bất kỳ đối tượng nào khác có th ể được tạo trong h ệ \nthống. \n\n\nGiáo trình H ệ quản trị Cơ sở dữ liệu \n44  Xác thực  Một cơ chế để xác định xem người  dùng có phải là n gười mà họ tuyên \nbố hay không.  "
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 51,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "▪ hệ quản trị cơ sở dữ liệu (DBMS)  \n▪ chương trình ứng dụng cơ s ở dữ liệu (database application)  \n▪ độc lập dữ liệu (data independenc e) \n▪ bảo mật (security)  \n▪ tính toàn v ẹn (integrity ) \n2. Mô t ả vai trò c ủa hệ quản trị cơ sở dữ l"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 17,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "quản lý d ữ liệu (data manager). Trình qu ản lý b ộ đệm đôi khi đư ợc gọi là trình \nquản lý bộ nhớ cache (cache manager).  \n\nGiáo trình H ệ quản trị Cơ sở dữ liệu \n21   \nHình 1.7 Các thành ph ần của trình qu ản lý c ơ sở dữ liệu (DM)  \n1.4 "
+        }
+    ]
+}

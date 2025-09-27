@@ -78,13 +78,17 @@ def ask(req: AskRequest, user_id: int = Depends(get_current_user_id)):
         for c in candidates:
             c.setdefault("meta", {}).update(meta.get(c["document_id"], {}))
 
+    top_rerank = max(req.rerank_top_n * 2, 16)  # at least 16
     # Prepare docs for rerank
     docs = [{"text": c["text"], "meta": c.get("meta", {})} for c in candidates]
     # Call rerank
-    top = rerank(req.query, docs, top_n=req.rerank_top_n)
-
+    reranked = rerank(req.query, docs, top_n=top_rerank)
+    # limit top context at least 8
+    top_context = min(req.rerank_top_n, 8)
+    final_context = reranked[:top_context]
     # Call LLM to generate answer
-    answer = generate_answer(req.query, top, language=req.answer_language)
+    answer = generate_answer(req.query, final_context,
+                             language=req.answer_language)
 
     # expose minimal source info
     sources = [
@@ -95,7 +99,7 @@ def ask(req: AskRequest, user_id: int = Depends(get_current_user_id)):
             "source": d["meta"].get("source"),
             "preview": d["text"][:240]
         }
-        for d in top
+        for d in final_context
     ]
     return AskResponse(answer=answer, sources=sources)
 

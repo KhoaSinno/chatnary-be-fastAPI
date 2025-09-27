@@ -1,0 +1,61 @@
+{
+    "answer": "Các học phần chuyên ngành bao gồm:\n\n*   Hệ cơ sở dữ liệu đa phương tiện [5:62]\n*   Phát triển ứng dụng IoT [5:62]\n*   Nguyên lý thiết kế và kiến trúc phần mềm [5:62]\n*   Hệ cơ sở dữ liệu NoSQL [5:4]\n*   Hệ chuyên gia [5:4]\n*   Hệ thống thông tin địa lý [5:4]\n*   Quản lý an ninh thông tin [5:4]\n*   Xây dựng và triển khai ứng dụng thương mại điện tử [5:4]\n*   Chứng thực và an toàn dữ liệu trong thương mại điện tử [5:4]\n*   An toàn và bảo mật thông tin [5:4]\n*   Nguyên lý kho dữ liệu và OLAP [5:4]\n*   Xử lý ảnh và thị giác máy tính [5:4]\n*   Tin học văn phòng nâng cao [5:4]\n*   Lập trình mô phỏng [5:4]\n*   Thiết kế giao diện người dùng đồ họa [5:11]\n*   Phân tích và trực quan dữ liệu [5:11]\n*   Phần mềm mã nguồn mở [5:11]\n*   Lập trình web [5:58]\n*   Trí tuệ nhân tạo [5:58]\n*   Ngôn ngữ hóa dữ liệu [5:58]\n*   Thu thập và tiền xử lý dữ liệu [5:7]\n*   Đổi mới sáng tạo và khởi nghiệp [5:7]\n*   Điện toán đám mây [5:63]\n*   Đồ án Hệ thống thông tin [5:63]",
+    "sources": [
+        {
+            "document_id": 5,
+            "chunk_index": 62,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "thủ đối với một hệ thống TMĐT; lựa chọn\ngiải pháp, kỹ thuật xây dựng các website\nTMDT; phương pháp phát triển, tích hợp dua\ntrên nền tảng các hệ quản trị nội dung mã\n\nHệ cơ sở dữ\nliệu đa\nphương tiện\n\nHọc phan bạo gồm các nội dung chính: tổ "
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 4,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "an ninh thông tin cung cấp CƠ SỞ chung cho\nviệc phát triển các chuẩn an ninh tổ chức và\nthực tiễn quản ly an ninh một cách hiệu quả,\nđồng thời cung cấp sự tin cậy trong các mối\nquan hệ của tô chức.\n\n56.\n\n57. | Hệ cơ sở dữ\n\nliệu NoSQL\n\n58. |"
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 11,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "giám sát. Học phần cũng cung cấp một số mô\nhình máy học phổ biến và cách áp dụng các\nmô hình để giải quyết các bài toán cơ bản.\n12.1 Các khối kiến thức\n\nTổng khối lượng chương trình: 150 tín chỉ (không tính các học phần điều kiện:\nGiáo dục "
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 7,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "đại học các ngành công nghệ thông tin như Hệ thống thông tin, Khoa học máy tính, Kỹ\nthuật phân mêm...\n\nSinh viên có khả năng tự học, tự nghiên cứu trong lĩnh vực công nghệ thông tin và\ncác lĩnh vực gan với công nghệ thông tin.\n\n3.6 Các chươ"
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 58,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "Môn học cung cấp cho sinh viên kiến thức về\nlập trình ứng dụng Android bang ngôn ngữ\nlập trình Java như: lập trình giao diện, xử lý\n\n‘| sự kiện, thao tác dữ liệu, Intent.\n\nLập trình\nweb\n\nTrí tuệ nhân\ntạo\n\nNgôn ngữ\nhóa dit liệu\n\nHọc phần cun"
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 7,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "hoặc tái dung lại hệ thống, từ đó rút ra các\nthông tin hữu ích.\n\nThu thập và | Học phần bao gồm: cái nhìn bao quát về thu\ntiền xử lý dữ thập dữ liệu và tiền xử lý dữ liệu (mục tiêu\nliệu của thu thập và tiền xử ly dit liệu, các nhiệm\nvụ của "
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 5,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "dựng, phân tích, thiết kế, lập trình, và triển\nkhai một ứng dụng thương mại điện tử.\n\nNội dung môn học đầu tiên sẽ trình bày các\nkiến thức về thương mại điện tử và tầm quan\ntrọng của an toàn bảo mật thông tin trong\nthương mại điện tử. Tiếp "
+        },
+        {
+            "document_id": 5,
+            "chunk_index": 63,
+            "title": "HTTT_CTDH_2022",
+            "source": "/data/HTTT_CTDH_2022.pdf",
+            "preview": "thiết kế và\nkiến trúc\n\nphần mềm\n\nĐiện toán\nđám mây\n\nHọc phan nay sé cung cập cho người hoc một\ncái nhìn đầy đủ về hiệu quả, lợi ích cùng\nnhững thách thức trong công cuộc xây dựng\nvà phát triển các dịch vụ điện toán đám mây.\nNgười học sẽ đượ"
+        }
+    ]
+}

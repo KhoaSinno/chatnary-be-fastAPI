@@ -1,0 +1,47 @@
+{
+    "answer": "Lỗi sinh trả lời. Vui lòng thử lại.",
+    "sources": [
+        {
+            "document_id": 6,
+            "chunk_index": 46,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "cao, đ ảm bảo rằng hư ớng phát tri ển cơ s ở dữ liệu cuối cùng s ẽ hỗ trợ các m ục tiêu c ủa \ntổ chức. \nQuản trị viên cơ s ở dữ liệu (Database Admini strator - DBA) ch ịu trác h nhi ệm xây d ựng \ncơ sở dữ liệu vật lý, bao g ồm thiết kế và t"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 45,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "1.1.5 Vai trò con ngư ời trong môi trư ờng DBMS  \nTrong ph ần này, chúng ta tìm hi ểu  thành ph ần thứ năm c ủa môi trư ờng DBMS: con \nngười. Có b ốn vai trò con ngư ời khác nhau trong  môi trư ờng DBMS: qu ản trị viên d ữ \nliệu và quản trị"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 51,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "▪ hệ quản trị cơ sở dữ liệu (DBMS)  \n▪ chương trình ứng dụng cơ s ở dữ liệu (database application)  \n▪ độc lập dữ liệu (data independenc e) \n▪ bảo mật (security)  \n▪ tính toàn v ẹn (integrity ) \n2. Mô t ả vai trò c ủa hệ quản trị cơ sở dữ l"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 0,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "Trách nhi ệm cho phé p sử dụng DBMS thư ờng thu ộc về Quản trị viên cơ s ở dữ liệu \n(DBA), ngư ời này cũng ph ải thiết lập các tài kho ản ngư ời dùng và m ật khẩu cá nhân \nbằng chính DBMS.  \nMột số DBMS duy trì danh sách các đ ịnh danh ngư "
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 63,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "nhìn, th ủ tục, trình kích ho ạt hoặc bất kỳ đối tượng nào khác có th ể được tạo trong h ệ \nthống. \n\n\nGiáo trình H ệ quản trị Cơ sở dữ liệu \n44  Xác thực  Một cơ chế để xác định xem người  dùng có phải là n gười mà họ tuyên \nbố hay không.  "
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 31,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "xem Cơ sở dữ liệu (Database  - DB) là tập hợp các d ữ liệu liên quan , Hệ quản trị Cơ sở \ndữ liệu (Database Management System - DBMS) là ph ần mềm qu ản lý và điều khi ển \nquyền truy c ập cơ s ở dữ liệu. Ứng dụng cơ s ở dữ liệu (Database Ap"
+        }
+    ]
+}

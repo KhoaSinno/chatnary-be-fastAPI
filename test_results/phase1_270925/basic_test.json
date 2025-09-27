@@ -1,0 +1,40 @@
+{
+    "answer": "DBMS (Hệ quản trị Cơ sở dữ liệu) là một hệ thống phần mềm cho phép người dùng định nghĩa, tạo, duy trì và kiểm soát quyền truy cập vào cơ sở dữ liệu [6:46, 6:36]. \"DBMS là phần mềm quản lý và điều khiển quyền truy cập cơ sở dữ liệu\" [6:31]. Thông thường, một DBMS cung cấp các phương tiện cho phép người dùng định nghĩa cơ sở dữ liệu thông qua Ngôn ngữ Định nghĩa Dữ liệu (DDL) và cho phép người dùng chèn, cập nhật, xóa và truy xuất dữ liệu thông qua Ngôn ngữ Thao tác Dữ liệu (DML) [6:36].\n",
+    "sources": [
+        {
+            "document_id": 6,
+            "chunk_index": 46,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "dữ liệu có liên quan logic và mô t ả về tập hợp này, đư ợc thiết kế để đáp ứng nhu \ncầu thông tin c ủa một tổ chức. DBMS là m ột hệ thống ph ần mềm cho phép ngư ời \ndùng đ ịnh nghĩa , tạo, duy tr ì và ki ểm soát quy ền truy c ập vào cơ s ở "
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 31,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "xem Cơ sở dữ liệu (Database  - DB) là tập hợp các d ữ liệu liên quan , Hệ quản trị Cơ sở \ndữ liệu (Database Management System - DBMS) là ph ần mềm qu ản lý và điều khi ển \nquyền truy c ập cơ s ở dữ liệu. Ứng dụng cơ s ở dữ liệu (Database Ap"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 36,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "Giáo trình H ệ quản trị Cơ sở dữ liệu \n4  1.1.2 Hệ quản trị cơ sở dữ liệu \nHệ quản trị  \nCơ sở dữ liệu  Một hệ thống ph ần mềm cho phép ngư ời dùng đ ịnh nghĩa , tạo, \nduy trì và ki ểm soát quy ền truy c ập cơ s ở dữ liệu. \nHệ quản trị cơ s"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 29,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "• Một số công dụng chung c ủa hệ cơ sở dữ liệu. \n• Ý nghĩa c ủa các thuật ngữ Cơ sở dữ liệu (Databa se - DB), Hệ quản trị Cơ sở dữ \nliệu (Database Management System  - DBMS).  \n• Các ch ức năng đi ển hình c ủa DBMS.  \n• Các thành ph ần chín"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 47,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "• DBMS cung c ấp quy ền truy c ập có ki ểm soát vào cơ sở dữ liệu, đảm bảo khả \nnăng ki ểm soát bảo mật, tính toàn v ẹn, đồng th ời và khôi ph ục cũng như danh \nmục ngư ời dùng có th ể truy c ập.  \n• Môi trư ờng DBMS bao g ồm ph ần cứng (má"
+        }
+    ]
+}

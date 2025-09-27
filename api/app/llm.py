@@ -21,6 +21,8 @@ if settings.openai_api_key:
 #   [0.123456789, -0.000001234, 0.9999999],
 #   [0.5, 0.25, -0.125]
 # ]
+
+
 def embed_texts(texts: List[str]) -> List[List[float]]:
     if not settings.openai_api_key:
         raise RuntimeError("OPENAI_API_KEY not set")
@@ -98,30 +100,84 @@ if settings.google_api_key:
         print(f"Warning: Could not initialize Google GenAI client: {e}")
         _genai = None
 
+# V1:
+# def generate_answer(query: str, context_blocks: List[Dict], language: str = "vi") -> str:
+#     if not _genai:
+#         raise RuntimeError("GOOGLE_API_KEY (or GEMINI_API_KEY) not set")
 
-def generate_answer(query: str, context_blocks: List[Dict], language: str = "vi") -> str:
-    if not _genai:
-        raise RuntimeError("GOOGLE_API_KEY (or GEMINI_API_KEY) not set")
+#     if not context_blocks:
+#         return "Mình không tìm thấy thông tin liên quan trong tài liệu."
 
-    # Build a compact prompt with guardrails
-    lines = [
-        "Bạn là trợ lý RAG. Trả lời NGẮN GỌN bằng tiếng %s dựa hoàn toàn vào CONTEXT dưới đây." % (
-            "Việt" if language.startswith("vi") else language),
-        "Nếu không đủ thông tin, nói rõ: 'Mình không tìm thấy đủ thông tin trong tài liệu.'",
-        "Luôn kèm mục 'Nguồn' với [doc_id:chunk] đã dùng.",
-        "\n---\nCONTEXT:"
+#     # Build a compact prompt with guardrails
+#     lines = [
+#         "Bạn là trợ lý RAG. Trả lời NGẮN GỌN bằng tiếng %s dựa hoàn toàn vào CONTEXT dưới đây." % (
+#             "Việt" if language.startswith("vi") else language),
+#         "Quy tắc QUAN TRỌNG:",
+#         "- Nếu không đủ thông tin, nói rõ: 'Mình không tìm thấy đủ thông tin trong tài liệu.'",
+#         "- Luôn kèm mục 'Nguồn' với [doc_id:chunk_idx] đã dùng.",
+#         "- Trích dẫn nguyên văn 1-2 câu quan trọng khi cần chứng minh",
+#         "\n---\nCONTEXT:"
+#     ]
+#     for b in context_blocks:
+#         src = b.get("meta", {})
+#         tag = f"[{src.get('document_id')}:{src.get('chunk_index')}]"
+#         ttl = src.get("title") or src.get("source") or ""
+#         lines.append(f"- {tag} {ttl} → {b['text']}")
+#     lines.append("\n---\nCÂU HỎI: " + query)
+
+#     resp = _genai.models.generate_content(
+#         model=settings.gemini_model,
+#         contents="\n".join(lines),
+#         config={"temperature": 0.2}
+#     )
+#     # New SDK returns object with .text
+#     return getattr(resp, "text", str(resp))
+
+
+# V2:
+
+def generate_answer(query, context_blocks, language="vi") -> str:
+    if not context_blocks:
+        return "Mình không tìm thấy thông tin liên quan trong tài liệu."
+
+    # Chuẩn bị context với source tags
+    context_lines = [
+        "Bạn là trợ lý RAG chuyên nghiệp. Hãy trả lời dựa CHÍNH XÁC trên CONTEXT được cung cấp.",
+        "Quy tắc QUAN TRỌNG:",
+        "- Sau mỗi thông tin chính, gắn trích dẫn [doc_id:chunk_idx]",
+        "- Nếu thiếu thông tin: 'Mình không tìm thấy đủ thông tin trong tài liệu.'",
+        "- Trích dẫn nguyên văn 1-2 câu quan trọng khi cần chứng minh",
+        "",
+        "CONTEXT:"
     ]
-    for b in context_blocks:
-        src = b.get("meta", {})
-        tag = f"[{src.get('document_id')}:{src.get('chunk_index')}]"
-        ttl = src.get("title") or src.get("source") or ""
-        lines.append(f"- {tag} {ttl} → {b['text']}")
-    lines.append("\n---\nCÂU HỎI: " + query)
 
-    resp = _genai.models.generate_content(
-        model=settings.gemini_model,
-        contents="\n".join(lines),
-        config={"temperature": 0.2}
-    )
-    # New SDK returns object with .text
-    return getattr(resp, "text", str(resp))
+    for i, block in enumerate(context_blocks):
+        meta = block.get("meta", {})
+        doc_id = meta.get("document_id", "?")
+        chunk_idx = meta.get("chunk_index", "?")
+        source_tag = f"[{doc_id}:{chunk_idx}]"
+
+        context_lines.append(f"Nguồn {source_tag}:")
+        context_lines.append(block["text"])
+        context_lines.append("")
+
+    context_lines.extend([
+        f"CÂU HỎI: {query}",
+        "",
+        "TRẢ LỜI (có trích dẫn):"
+    ])
+
+    prompt = "\n".join(context_lines)
+
+    if _genai:
+        try:
+            response = _genai.models.generate_content(
+                model=settings.gemini_model,
+                contents=prompt,
+                config={"temperature": 0.1, "max_output_tokens": 1000}
+            )
+            return getattr(response, "text", str(response))
+        except Exception as e:
+            print(f"Gemini error: {e}")
+
+    return "Lỗi sinh trả lời. Vui lòng thử lại."

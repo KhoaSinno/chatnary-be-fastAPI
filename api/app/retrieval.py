@@ -1,32 +1,110 @@
+import os
 from typing import List, Dict, Tuple
+from collections import defaultdict
 from .db import get_conn
 from .llm import embed_texts
 
+RRF_K = int(os.getenv("RAG_RRF_K", "60"))
+
+
+def rrf_merge(vector_hits, keyword_hits):
+    """Reciprocal Rank Fusion - proven better than score-based merging"""
+    bag, keep = defaultdict(float), {}
+
+    # RRF scoring
+    for rank, hit in enumerate(vector_hits, 1):
+        bag[hit["id"]] += 1.0 / (RRF_K + rank)
+        keep[hit["id"]] = hit
+
+    for rank, hit in enumerate(keyword_hits, 1):
+        bag[hit["id"]] += 1.0 / (RRF_K + rank)
+        if hit["id"] not in keep:
+            keep[hit["id"]] = hit
+
+    merged = [
+        {**keep[chunk_id], "rrf_score": score}
+        for chunk_id, score in bag.items()
+    ]
+    merged.sort(key=lambda x: x["rrf_score"], reverse=True)
+    return merged
+
+
+def apply_locality_penalty(chunks, window=1, penalty=0.15):
+    """Giảm score của chunks gần nhau trong cùng document"""
+    doc_chunks = {}
+    result = []
+
+    for chunk in chunks:
+        doc_id = chunk["document_id"]
+        chunk_idx = chunk["chunk_index"]
+        score = chunk["rrf_score"]
+
+        # Check overlap với chunks đã chọn
+        if doc_id in doc_chunks:
+            for existing_idx in doc_chunks[doc_id]:
+                if abs(chunk_idx - existing_idx) <= window:
+                    score *= (1.0 - penalty)
+                    break
+
+        result.append({**chunk, "rrf_score": score})
+        doc_chunks.setdefault(doc_id, []).append(chunk_idx)
+
+    result.sort(key=lambda x: x["rrf_score"], reverse=True)
+    return result
+
 # Cosine distance operator `<=>` in pgvector; we created a HNSW index with vector_cosine_ops
 
+# V1
+# def _vector_candidates(q_vec: List[float], limit: int = 40) -> List[Dict]:
+#     vec_literal = "[" + ",".join(f"{x:.6f}" for x in q_vec) + "]"
+#     sql = f"""
+#         SELECT id, document_id, chunk_index, content,
+#         1.0 - (embedding <=> %s::vector) AS score
+#         FROM chunks
+#         ORDER BY embedding <=> %s::vector
+#         LIMIT %s
+#     """
+#     with get_conn() as conn:
+#         rows = conn.execute(sql, (vec_literal, vec_literal, limit)).fetchall()
+#     return [
+#         {
+#             "id": r[0],
+#             "document_id": r[1],
+#             "chunk_index": r[2],
+#             "text": r[3],
+#             "score": float(r[4]),
+#             "meta": {"document_id": r[1], "chunk_index": r[2]}
+#         }
+#         for r in rows
+#     ]
 
-def _vector_candidates(q_vec: List[float], limit: int = 40) -> List[Dict]:
+# V2
+
+
+def _vector_candidates(q_vec, limit: int = 40):
     vec_literal = "[" + ",".join(f"{x:.6f}" for x in q_vec) + "]"
-    sql = f"""
-        SELECT id, document_id, chunk_index, content,
-        1.0 - (embedding <=> %s::vector) AS score
-        FROM chunks
-        ORDER BY embedding <=> %s::vector
-        LIMIT %s
+
+    # Tăng ef_search để có precision tốt hơn
+    ef_search = int(os.getenv("HNSW_EF_SEARCH", "80"))
+
+    sql = """
+    SET LOCAL hnsw.ef_search = %(ef)s;
+    SELECT id, document_id, chunk_index, content,
+           1.0 - (embedding <=> %(vec)s::vector) AS score
+    FROM chunks
+    ORDER BY embedding <=> %(vec)s::vector
+    LIMIT %(limit)s;
     """
+
     with get_conn() as conn:
-        rows = conn.execute(sql, (vec_literal, vec_literal, limit)).fetchall()
-    return [
-        {
-            "id": r[0],
-            "document_id": r[1],
-            "chunk_index": r[2],
-            "text": r[3],
-            "score": float(r[4]),
-            "meta": {"document_id": r[1], "chunk_index": r[2]}
-        }
-        for r in rows
-    ]
+        rows = conn.execute(sql, {
+            "ef": ef_search,
+            "vec": vec_literal,
+            "limit": limit
+        }).fetchall()
+
+    return [{"id": r[0], "document_id": r[1], "chunk_index": r[2],
+             "text": r[3], "score": r[4]} for r in rows]
 
 
 def hybrid_search(query: str, k_vec: int = 60, k_kw: int = 30) -> List[Dict]:
@@ -37,11 +115,17 @@ def hybrid_search(query: str, k_vec: int = 60, k_kw: int = 30) -> List[Dict]:
     kw_hits = _keyword_candidates(query, limit=k_kw)
 
     # Merge & de-duplicate by chunk id, keep max score
-    seen = {}
-    for item in vec_hits + kw_hits:
-        if item["id"] not in seen or item["score"] > seen[item["id"]]["score"]:
-            seen[item["id"]] = item
-    return list(seen.values())
+    # seen = {}
+    # for item in vec_hits + kw_hits:
+    #     if item["id"] not in seen or item["score"] > seen[item["id"]]["score"]:
+    #         seen[item["id"]] = item
+    # return list(seen.values())
+
+    # Sử dụng RRF thay vì merge cũ
+    merged = rrf_merge(vec_hits, kw_hits)
+    merged = apply_locality_penalty(merged, window=1, penalty=0.15)
+
+    return merged
 
 
 # vec_hits = [

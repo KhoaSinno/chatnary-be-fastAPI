@@ -1,0 +1,47 @@
+{
+    "answer": "Hệ quản trị cơ sở dữ liệu (DBMS) là phần mềm quản lý và điều khiển quyền truy cập cơ sở dữ liệu [6:31]. Một DBMS thường cung cấp các phương tiện để người dùng định nghĩa cơ sở dữ liệu thông qua Ngôn ngữ Định nghĩa Dữ liệu (DDL), cho phép chỉ định các kiểu dữ liệu, cấu trúc và ràng buộc [6:36]. Ngoài ra, DBMS còn cho phép người dùng chèn, cập nhật, xóa và truy xuất dữ liệu thông qua Ngôn ngữ Thao tác Dữ liệu (DML) [6:36].\n\nCác thành phần chính của DBMS bao gồm:\n* Bộ xử lý truy vấn (Query processor): Chuyển đổi các truy vấn thành một loạt các lệnh cấp thấp và chuyển đến trình quản lý cơ sở dữ liệu [6:13].\n* Trình quản lý cơ sở dữ liệu (Database manager - DM): Giao tiếp với các chương trình ứng dụng và truy vấn do người dùng gửi, chấp nhận các truy vấn, kiểm tra các lược đồ và thực hiện lời gọi đến trình quản lý tập tin [6:13]. Các thành phần của DM được thể hiện trong Hình 1.7 [6:13].\n* Trình quản lý tập tin (File manager): Thao tác với các tập tin lưu trữ bên dưới và quản lý việc phân bổ không gian lưu trữ trên đĩa, thiết lập và duy trì danh sách các cấu trúc và chỉ mục [6:13].\n",
+    "sources": [
+        {
+            "document_id": 6,
+            "chunk_index": 13,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "Giáo trình H ệ quản trị Cơ sở dữ liệu \n19   \nHình 1.6 Các thành ph ần chính c ủa DBMS  \nCác thành ph ần có trong Hình 1.6: \n• Bộ xử lý truy v ấn (Query processor). Đây là thành ph ần chính  của DBMS , \nchuy ển đổi các tr uy vấn thành m ột l"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 31,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "xem Cơ sở dữ liệu (Database  - DB) là tập hợp các d ữ liệu liên quan , Hệ quản trị Cơ sở \ndữ liệu (Database Management System - DBMS) là ph ần mềm qu ản lý và điều khi ển \nquyền truy c ập cơ s ở dữ liệu. Ứng dụng cơ s ở dữ liệu (Database Ap"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 51,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "▪ hệ quản trị cơ sở dữ liệu (DBMS)  \n▪ chương trình ứng dụng cơ s ở dữ liệu (database application)  \n▪ độc lập dữ liệu (data independenc e) \n▪ bảo mật (security)  \n▪ tính toàn v ẹn (integrity ) \n2. Mô t ả vai trò c ủa hệ quản trị cơ sở dữ l"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 29,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "• Một số công dụng chung c ủa hệ cơ sở dữ liệu. \n• Ý nghĩa c ủa các thuật ngữ Cơ sở dữ liệu (Databa se - DB), Hệ quản trị Cơ sở dữ \nliệu (Database Management System  - DBMS).  \n• Các ch ức năng đi ển hình c ủa DBMS.  \n• Các thành ph ần chín"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 36,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "Giáo trình H ệ quản trị Cơ sở dữ liệu \n4  1.1.2 Hệ quản trị cơ sở dữ liệu \nHệ quản trị  \nCơ sở dữ liệu  Một hệ thống ph ần mềm cho phép ngư ời dùng đ ịnh nghĩa , tạo, \nduy trì và ki ểm soát quy ền truy c ập cơ s ở dữ liệu. \nHệ quản trị cơ s"
+        },
+        {
+            "document_id": 6,
+            "chunk_index": 17,
+            "title": "kb_dbms",
+            "source": "/data/kb_dbms.pdf",
+            "preview": "quản lý d ữ liệu (data manager). Trình qu ản lý b ộ đệm đôi khi đư ợc gọi là trình \nquản lý bộ nhớ cache (cache manager).  \n\nGiáo trình H ệ quản trị Cơ sở dữ liệu \n21   \nHình 1.7 Các thành ph ần của trình qu ản lý c ơ sở dữ liệu (DM)  \n1.4 "
+        }
+    ]
+}
